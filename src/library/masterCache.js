@@ -13,6 +13,22 @@ const getArticles = async(body) => {
     }
 }
 
+const detailArticle = async(url) => {
+    const options = {
+        method:'GET',
+        headers:{
+            'content-Type':'text/html; charset=utf-8',
+            Connection: 'keep-alive'
+        }
+    }
+
+    const resp = await fetch(url, options)
+    const htmlResp = await resp.text()
+    
+    return htmlResp
+}
+
 module.exports = {
-    getArticles
+    getArticles,
+    detailArticle
 }
