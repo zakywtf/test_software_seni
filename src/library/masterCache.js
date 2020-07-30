@@ -28,7 +28,19 @@ const detailArticle = async(url) => {
     return htmlResp
 }
 
+const getBooks = async(body) => {
+    const {list} = body
+    const url = process.env.BOOKLIST_URL+`${list}.json?api-key=${process.env.API_KEY}`
+    try {
+        const data = await getData(url);
+        return data.results
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     getArticles,
-    detailArticle
+    detailArticle,
+    getBooks
 }
